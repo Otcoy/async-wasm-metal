@@ -4,6 +4,8 @@ no clk - run as fast as possible
 
 modules:
 
-memory - handle load / store and pass the work to the core module
+memory - handle load / store
 
-core - run every non load / store instructions and pass the work to the memory module
+core - run every non load / store instructions and wait the memory module
+
+a core might manage multiple stacks - hyper-threading
