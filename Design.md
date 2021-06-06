@@ -25,3 +25,14 @@ executor:
 + io
 
 a thread is connected to one or zero executor
+
+## Design 3
+
+executor:
+
++ memory
++ core
++ io
++ ...
+
+send the thread to another executor from time to time
