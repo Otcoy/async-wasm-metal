@@ -14,7 +14,7 @@ a core might manage multiple stacks - hyper-threading
 
 ## Design 2
 
-modules:
+### modules:
 
 + thread
 
