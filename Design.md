@@ -28,6 +28,8 @@ a thread is connected to one or zero executor
 
 ## Design 3
 
+USE THIS
+
 executor:
 
 + memory
