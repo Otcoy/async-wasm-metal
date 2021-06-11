@@ -20,6 +20,8 @@ module dual_and (
             previous_y <= dual_y;
         end else if (input_done) begin
             `DUAL_WRITE(dual_result, result);
+            previous_x <= dual_x;
+            previous_y <= dual_y;
         end
     end
 
