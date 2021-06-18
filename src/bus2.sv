@@ -22,7 +22,7 @@ module bus2 #(
     done #(INPUT) d1 (previous_user1_input, user1_input, done_user1_input);
     Dual previous_out [OUTPUT-1:0];
     logic done_out;
-    done #(INPUT) d2 (previous_out, out, done_out);
+    done #(OUTPUT) d2 (previous_out, out, done_out);
 
     // todo: review this warning: `Delayed assignments (<=) in non-clocked (non flop or latch) block; suggest blocking assignments (=).`
     always @(posedge reset, posedge done_out, negedge done_out, posedge done_user0_input, posedge done_user1_input) begin
