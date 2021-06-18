@@ -5,6 +5,18 @@ Executes the WebAssembly [instructions](https://www.w3.org/TR/wasm-core-1/#a7-in
 
 ## tools
 
+iverilog
+
+Verilator
+
+### deprecated
+
 https://github.com/zachjs/sv2v
 
-iverilog
+## hardware
+
+### cloud
+
+Amazon EC2 F1
+
+Aliyun FPGA
