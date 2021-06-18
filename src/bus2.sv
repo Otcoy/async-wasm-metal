@@ -24,22 +24,31 @@ module bus2 #(
     logic done_out;
     done #(INPUT) d2 (previous_out, out, done_out);
 
-    always @(posedge reset, posedge done_out) begin
+    always @(posedge reset, posedge done_out, negedge done_out, posedge done_user0_input, posedge done_user1_input) begin
         if (reset) begin
             running <= `false;
             previous_user0_input <= user0_input;
             previous_user1_input <= user1_input;
             previous_out <= out;
-        end else begin
-            if (done_out && running) begin
-                running <= `false;
-                previous_out <= out;
-                if (user == 1) begin
-                    `copyDualArrayNonBlock(user1_output, previous_out, out)
-                end else begin
-                    `copyDualArrayNonBlock(user0_output, previous_out, out)
-                end
+        end else if (done_out && running) begin
+            running <= `false;
+            previous_out <= out;
+            if (user == 1) begin
+                `copyDualArrayNonBlock(user1_output, previous_out, out)
+            end else begin
+                `copyDualArrayNonBlock(user0_output, previous_out, out)
             end
+        end else if (!running && done_out) begin // unexpected state
+            // auto fixing ...
+            previous_out <= out;
+        end else if (!running && done_user0_input) begin
+            user <= 0;
+            running <= `true;
+            `copyDualArrayNonBlock(in, previous_user0_input, user0_input)
+        end else if (!running && done_user1_input) begin
+            user <= 1;
+            running <= `true;
+            `copyDualArrayNonBlock(in, previous_user1_input, user1_input)
         end
     end
 endmodule
