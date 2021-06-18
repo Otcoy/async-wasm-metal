@@ -12,23 +12,34 @@ module bus2 #(
     input Dual out [OUTPUT-1:0]
 );
     reg user;
-    reg idle = 1;
+    reg running = `false;
 
     Dual previous_user0_input [INPUT-1:0];
-    reg done_user0_input;
+    logic done_user0_input;
     done #(INPUT) d0 (previous_user0_input, user0_input, done_user0_input);
     Dual previous_user1_input [INPUT-1:0];
-    reg done_user1_input;
+    logic done_user1_input;
+    done #(INPUT) d1 (previous_user1_input, user1_input, done_user1_input);
     Dual previous_out [OUTPUT-1:0];
-    reg done_out;
+    logic done_out;
+    done #(INPUT) d2 (previous_out, out, done_out);
 
-
-    always @(posedge reset) begin
+    always @(posedge reset, posedge done_out) begin
         if (reset) begin
-            idle <= 1;
+            running <= `false;
             previous_user0_input <= user0_input;
             previous_user1_input <= user1_input;
             previous_out <= out;
+        end else begin
+            if (done_out && running) begin
+                running <= `false;
+                previous_out <= out;
+                if (user == 1) begin
+                    `copyDualArrayNonBlock(user1_output, previous_out, out)
+                end else begin
+                    `copyDualArrayNonBlock(user0_output, previous_out, out)
+                end
+            end
         end
     end
 endmodule
