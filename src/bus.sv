@@ -37,7 +37,7 @@ module bus #(
             previous_out = out;
         end else if (!running) begin
             reg [$clog2(N)-1:0] new_user;
-            for (int i=0;i<N;i++) begin
+            `fromZeroToConst(N, i) begin
                 if (done_user_input[i]) begin
                     new_user = i;
                 end

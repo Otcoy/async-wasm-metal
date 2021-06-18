@@ -27,9 +27,9 @@ module done_n #(
     */
 
     always_comb begin
-        for (int n=0;n<N;n++) begin
+        `fromZeroToConst(N, n) begin
             reg result = `true;
-            for (int iter=0;iter<BITS;iter++) begin
+            `fromZeroToConst(BITS, iter) begin
                 result = result && val0[n][iter] != val1[n][iter];
             end
             done[n] = result;

@@ -21,5 +21,9 @@ typedef struct packed {
 `define size_t [`size-1:0]
 `define true 1
 `define false 0
+`define array(n) [n-1:0]
+// n+1 - consider v=n  v++ -> v=n+1
+`define fromZeroToConst(n, v) for (reg `array($clog2(n+1)) v=0;v<n;v++)
 
 `endif
+/* verilator lint_off WIDTH */
