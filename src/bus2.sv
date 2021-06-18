@@ -24,6 +24,7 @@ module bus2 #(
     logic done_out;
     done #(INPUT) d2 (previous_out, out, done_out);
 
+    // todo: review this warning: `Delayed assignments (<=) in non-clocked (non flop or latch) block; suggest blocking assignments (=).`
     always @(posedge reset, posedge done_out, negedge done_out, posedge done_user0_input, posedge done_user1_input) begin
         if (reset) begin
             running <= `false;
