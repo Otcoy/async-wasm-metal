@@ -1,6 +1,6 @@
 `include "defs.svh"
-module name #(
-    parameter BITS = `size;
+module done #(
+    parameter BITS = `size
 ) (
     input Dual previous [BITS-1:0],
     input Dual current [BITS-1:0],
