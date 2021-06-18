@@ -17,7 +17,7 @@ module bus #(
 
     Dual previous_out [OUTPUT-1:0];
     logic done_out;
-    done #(INPUT) d0 (previous_out, out, done_out);
+    done #(OUTPUT) d0 (previous_out, out, done_out);
     Dual previous_user_input [N-1:0][INPUT-1:0];
     logic [N-1:0] done_user_input;
     done_n #(N, INPUT) d1 (user_input, previous_user_input, done_user_input);
