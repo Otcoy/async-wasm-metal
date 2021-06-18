@@ -25,13 +25,13 @@ module simple_mem #(
     logic done_all = done_isWrite && (in_isWrite ? (done_addr && done_in): done_addr);
 
     logic `array(ADDR) in_addr;
-    always @* begin
-        `readDualToArrayNonBlock(in_addr, addr, previous_addr)
+    always_comb begin
+        `readDualToArrayBlock(in_addr, addr, previous_addr)
     end
 
     logic `byte_t in_in;
-    always @* begin
-        `readDualToArrayNonBlock(in_in, in, previous_in)
+    always_comb begin
+        `readDualToArrayBlock(in_in, in, previous_in)
     end
 
     logic `byte_t value = mem[in_addr];
@@ -51,5 +51,5 @@ module simple_mem #(
             previous_isWrite <= isWrite;
         end
     end
-    
+
 endmodule
