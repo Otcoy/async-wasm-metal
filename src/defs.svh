@@ -27,5 +27,15 @@ typedef struct packed {
 // n+1 - consider v=n  v++ -> v=n+1
 `define fromZeroToConst(n, v) for (reg `array($clog2(n+1)) v=0;v<n;v++)
 
+// WASM
+typedef byte unsigned u8_t;
+typedef byte signed i8_t;
+typedef shortint unsigned u16_t;
+typedef shortint signed i16_t;
+typedef int unsigned u32_t;
+typedef int signed i32_t;
+typedef longint unsigned u64_t;
+typedef longint signed i64_t;
+
 `endif
 /* verilator lint_off WIDTH */
