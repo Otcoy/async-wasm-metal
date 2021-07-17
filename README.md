@@ -1,3 +1,7 @@
+Blocking問題 假設了一些東西的時序。不是完全robust的
+
+
+
 # async-wasm-metal
 An experimental physics asynchronous multi-core implementation of WebAssembly.
 
