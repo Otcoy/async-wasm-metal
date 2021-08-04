@@ -4,7 +4,7 @@ module done #(
 ) (
     input Dual val0 [BITS-1:0],
     input Dual val1 [BITS-1:0],
-    output done
+    output yes
 );
 
     always_comb begin
@@ -12,7 +12,7 @@ module done #(
         foreach (val0[iter]) begin
             i = i && val0[iter] != val1[iter];
         end
-        done = i;
+        yes = i;
     end
 
 endmodule
