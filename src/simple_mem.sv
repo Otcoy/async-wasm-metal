@@ -29,6 +29,7 @@ module simple_mem #(
         `readDualToArrayBlock(in_addr, addr, previous_addr)
     end
 
+    // quite unsafe
     logic `byte_t in_in;
     always_comb begin
         `readDualToArrayBlock(in_in, in, previous_in)
